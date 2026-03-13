@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TTYP" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD40V>
+    <TYPENAME>ZQM_T_LAB_DEVICE_READ_DATA</TYPENAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <ROWTYPE>ZQM_S_LAB_DEVICE_READ_DATA</ROWTYPE>
+    <ROWKIND>S</ROWKIND>
+    <DATATYPE>STRU</DATATYPE>
+    <ACCESSMODE>S</ACCESSMODE>
+    <KEYDEF>K</KEYDEF>
+    <KEYKIND>N</KEYKIND>
+    <KEYFDCOUNT>0002</KEYFDCOUNT>
+    <DDTEXT>Read stored transfered data</DDTEXT>
+   </DD40V>
+   <DD42V>
+    <DD42V>
+     <TYPENAME>ZQM_T_LAB_DEVICE_READ_DATA</TYPENAME>
+     <KEYFDPOS>0001</KEYFDPOS>
+     <ROWTYPEPOS>0001</ROWTYPEPOS>
+     <KEYFIELD>SESSION_GUID</KEYFIELD>
+    </DD42V>
+    <DD42V>
+     <TYPENAME>ZQM_T_LAB_DEVICE_READ_DATA</TYPENAME>
+     <KEYFDPOS>0002</KEYFDPOS>
+     <ROWTYPEPOS>0002</ROWTYPEPOS>
+     <KEYFIELD>DATASET_GUID</KEYFIELD>
+    </DD42V>
+   </DD42V>
+  </asx:values>
+ </asx:abap>
+</abapGit>

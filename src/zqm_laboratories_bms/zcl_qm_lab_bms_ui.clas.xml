@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_QM_LAB_BMS_UI</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>User interface helper class</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>2</LANGU>
+     <DESCRIPT>User interface helper class</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_LIST_MAINTENANCE</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_LIST_MAINTENANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_MULTI_MAINTENANCE</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_MULTI_MAINTENANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_SINGLE_MAINTENANCE</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AC_SINGLE_MAINTENANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Key word ID for user-defined fields</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AT_MULTI_MNT_COLUMN_LABELS</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Standard list of key/value relationships as strings</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AT_MULTI_MNT_COLUMN_LABELS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Standard list of key/value relationships as strings</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_FILL_CELL_INFORMATION</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Fill cell information for multi grid input function</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_FILL_CELL_INFORMATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Fill cell information for multi grid input function</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>_FILL_CELL_INFORMATION</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_FILL_CELL_INFORMATION</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SFPI" serializer_version="v1.0.0">
+ <asx:abap version="1.0" xmlns:asx="http://www.sap.com/abapxml">
+  <asx:values>
+   <VERSION>1</VERSION>
+   <TYPE/>
+   <INTERFACE href="#o1"/>
+   <INTERFACET>
+    <FPINTERFACET>
+     <NAME/>
+     <STATE/>
+     <LANGUAGE>D</LANGUAGE>
+     <ID/>
+     <TEXT>QM LMS: Interface für ZQMINSP_INST_FORM</TEXT>
+    </FPINTERFACET>
+   </INTERFACET>
+  </asx:values>
+  <asx:heap xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:abap="http://www.sap.com/abapxml/types/built-in" xmlns:cls="http://www.sap.com/abapxml/classes/global" xmlns:dic="http://www.sap.com/abapxml/types/dictionary">
+   <cls:CL_FP_INTERFACE_DATA id="o1">
+    <CL_FP_INTERFACE_DATA classVersion="1">
+     <CODING href="#o5"/>
+     <PARAMETERS href="#o4"/>
+     <GLOBAL_DEFINITIONS href="#o3"/>
+     <REFERENCE_FIELDS href="#o2"/>
+     <XSD_DEFINITIONS/>
+    </CL_FP_INTERFACE_DATA>
+   </cls:CL_FP_INTERFACE_DATA>
+   <cls:CL_FP_REFERENCE_FIELDS id="o2">
+    <CL_FP_INTERFACE_DATA_CHANGED classVersion="1">
+     <INTERFACE_DATA href="#o1"/>
+    </CL_FP_INTERFACE_DATA_CHANGED>
+    <CL_FP_REFERENCE_FIELDS classVersion="1">
+     <REFERENCE_FIELDS>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-BMSCH</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW01</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE01</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW02</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE02</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW03</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE03</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW04</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE04</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW05</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE05</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-VGW06</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE06</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-MGVRG</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ASVRG</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-LMNGA</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-XMNGA</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-GMNGA</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-MEINH</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM01</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE01</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM02</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE02</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM03</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE03</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM04</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE04</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM05</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE05</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-ISM06</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE06</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM01</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE01</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM02</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE02</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM03</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE03</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM04</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE04</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM05</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE05</UNIT>
+      </SFPREF>
+      <SFPREF>
+       <ACTIVE/>
+       <STANDARD/>
+       <DATATYPE>QUAN</DATATYPE>
+       <VALUE>S_INTERFACE-T_OPS-QAPO-OFM06</VALUE>
+       <UNIT>S_INTERFACE-T_OPS-QAPO-VGE06</UNIT>
+      </SFPREF>
+     </REFERENCE_FIELDS>
+    </CL_FP_REFERENCE_FIELDS>
+   </cls:CL_FP_REFERENCE_FIELDS>
+   <cls:CL_FP_GLOBAL_DEFINITIONS id="o3">
+    <CL_FP_INTERFACE_DATA_CHANGED classVersion="1">
+     <INTERFACE_DATA href="#o1"/>
+    </CL_FP_INTERFACE_DATA_CHANGED>
+    <CL_FP_GLOBAL_DEFINITIONS classVersion="1">
+     <GLOBAL_DATA/>
+     <TYPES/>
+     <FIELDSYMBOLS/>
+    </CL_FP_GLOBAL_DEFINITIONS>
+   </cls:CL_FP_GLOBAL_DEFINITIONS>
+   <cls:CL_FP_PARAMETERS id="o4">
+    <CL_FP_INTERFACE_DATA_CHANGED classVersion="1">
+     <INTERFACE_DATA href="#o1"/>
+    </CL_FP_INTERFACE_DATA_CHANGED>
+    <CL_FP_PARAMETERS classVersion="1">
+     <IMPORT_PARAMETERS>
+      <SFPIOPAR>
+       <NAME>PTYPE_24</NAME>
+       <TYPING>TYPE</TYPING>
+       <TYPENAME>ZBMS_LEN_PTYPE_24</TYPENAME>
+       <OPTIONAL>X</OPTIONAL>
+       <BYVALUE>X</BYVALUE>
+       <DEFAULTVAL/>
+       <STANDARD/>
+       <CONSTANT/>
+      </SFPIOPAR>
+      <SFPIOPAR>
+       <NAME>MATVARI_NOTE</NAME>
+       <TYPING>TYPE</TYPING>
+       <TYPENAME>ZBMS_BEMERKUNG100</TYPENAME>
+       <OPTIONAL>X</OPTIONAL>
+       <BYVALUE>X</BYVALUE>
+       <DEFAULTVAL/>
+       <STANDARD/>
+       <CONSTANT/>
+      </SFPIOPAR>
+      <SFPIOPAR>
+       <NAME>SOLLWERT</NAME>
+       <TYPING>TYPE</TYPING>
+       <TYPENAME>ZBMS_SOLLWERT</TYPENAME>
+       <OPTIONAL>X</OPTIONAL>
+       <BYVALUE>X</BYVALUE>
+       <DEFAULTVAL/>
+       <STANDARD/>
+       <CONSTANT/>
+      </SFPIOPAR>
+      <SFPIOPAR>
+       <NAME>LOGO_URL</NAME>
+       <TYPING>TYPE</TYPING>
+       <TYPENAME>STRING</TYPENAME>
+       <OPTIONAL>X</OPTIONAL>
+       <BYVALUE>X</BYVALUE>
+       <DEFAULTVAL/>
+       <STANDARD/>
+       <CONSTANT/>
+      </SFPIOPAR>
+      <SFPIOPAR>
+       <NAME>S_INTERFACE</NAME>
+       <TYPING>TYPE</TYPING>
+       <TYPENAME>ZQMINSP_INSTRUCTION_IF_S</TYPENAME>
+       <OPTIONAL/>
+       <BYVALUE/>
+       <DEFAULTVAL/>
+       <STANDARD/>
+       <CONSTANT/>
+      </SFPIOPAR>
+     </IMPORT_PARAMETERS>
+     <EXPORT_PARAMETERS/>
+     <TABLE_PARAMETERS/>
+     <EXCEPTIONS/>
+    </CL_FP_PARAMETERS>
+   </cls:CL_FP_PARAMETERS>
+   <cls:CL_FP_CODING id="o5">
+    <CL_FP_INTERFACE_DATA_CHANGED classVersion="1">
+     <INTERFACE_DATA href="#o1"/>
+    </CL_FP_INTERFACE_DATA_CHANGED>
+    <CL_FP_CODING classVersion="1">
+     <INPUT_PARAMETERS>
+      <FPPARAMETER>QALS</FPPARAMETER>
+     </INPUT_PARAMETERS>
+     <OUTPUT_PARAMETERS>
+      <FPPARAMETER>LOGO_URL</FPPARAMETER>
+     </OUTPUT_PARAMETERS>
+     <INITIALIZATION>
+      <FPCLINE>Data:</FPCLINE>
+      <FPCLINE>lv_RFCTYPE  LIKE  RFCDISPLAY-RFCTYPE,</FPCLINE>
+      <FPCLINE>lv_SERVICENR  LIKE  RFCDISPLAY-RFCSYSID,</FPCLINE>
+      <FPCLINE>lv_SERVER LIKE  RFCDISPLAY-RFCHOST,</FPCLINE>
+      <FPCLINE>lv_TRACE  LIKE  RFCDISPLAY-RFCTRACE,</FPCLINE>
+      <FPCLINE>lv_LANGUAGE LIKE  RFCDISPLAY-RFCLANG,</FPCLINE>
+      <FPCLINE>lv_CLIENT LIKE  RFCDISPLAY-RFCCLIENT,</FPCLINE>
+      <FPCLINE>lv_USER LIKE  RFCDISPLAY-RFCALIAS,</FPCLINE>
+      <FPCLINE>lv_PASSWORD LIKE  RFCDISPLAY-RFCEXEC,</FPCLINE>
+      <FPCLINE>lv_DESCRIPTION  LIKE  RFCDOC-RFCDOC1,</FPCLINE>
+      <FPCLINE>lv_PROXY_HOST LIKE  RFCDISPLAY-RFCGWHOST,</FPCLINE>
+      <FPCLINE>lv_PROXY_SERVICE  LIKE  RFCDISPLAY-RFCGWSERV,</FPCLINE>
+      <FPCLINE>lv_PROXY_USER TYPE  RFCDISPLAY-PROXYUSER,</FPCLINE>
+      <FPCLINE>lv_PROXY_PASSWORD TYPE  STRING,</FPCLINE>
+      <FPCLINE>lv_SSLAPPLIC  TYPE  RFCDISPLAY-SSLAPPLIC,</FPCLINE>
+      <FPCLINE>lv_PATH_PREFIX  TYPE  STRING,</FPCLINE>
+      <FPCLINE>lv_DESTLOCK LIKE  RFCDISPLAY-RFCLOCK,</FPCLINE>
+      <FPCLINE>lv_AUTHORITY  TYPE  DESTAUTH,</FPCLINE>
+      <FPCLINE>lv_SLOGIN LIKE  RFCDISPLAY-RFCSLOGIN,</FPCLINE>
+      <FPCLINE>lv_SAMEUSR  LIKE  RFCDISPLAY-RFCSAMEUSR,</FPCLINE>
+      <FPCLINE>lv_SSL  LIKE  RFCDISPLAY-RFCSNC,</FPCLINE>
+      <FPCLINE>lv_HTTP_TIMEOUT TYPE  I,</FPCLINE>
+      <FPCLINE>lv_HTTP_VERSION LIKE  RFCDISPLAY-RFCTYPE,</FPCLINE>
+      <FPCLINE>lv_HTTP_COMPRESS  LIKE  RFCDISPLAY-RFCTYPE,</FPCLINE>
+      <FPCLINE>lv_COMPRESSREPLY  LIKE  RFCDISPLAY-RFCTYPE,</FPCLINE>
+      <FPCLINE>lv_COOKIE_ACCEPT  LIKE  RFCDISPLAY-RFCTYPE,</FPCLINE>
+      <FPCLINE>lv_SSO_TICKET TYPE  RFCDISPLAY-RFCTSYSOPT,</FPCLINE>
+      <FPCLINE>lv_CATEGORY TYPE  RFCDISPLAY-RFCCATEGORY.</FPCLINE>
+      <FPCLINE/>
+      <FPCLINE>****************************************************</FPCLINE>
+      <FPCLINE>* Create logo url string</FPCLINE>
+      <FPCLINE>****************************************************</FPCLINE>
+      <FPCLINE>CALL FUNCTION &apos;RFC_READ_HTTP_DESTINATION&apos;</FPCLINE>
+      <FPCLINE>  EXPORTING</FPCLINE>
+      <FPCLINE>    DESTINATION                   = &apos;ADS&apos;</FPCLINE>
+      <FPCLINE>    AUTHORITY_CHECK               = &apos; &apos;</FPCLINE>
+      <FPCLINE>    BYPASS_BUF                    = &apos;X&apos;</FPCLINE>
+      <FPCLINE>  IMPORTING</FPCLINE>
+      <FPCLINE>    RFCTYPE                       = lv_RFCTYPE</FPCLINE>
+      <FPCLINE>    SERVICENR                     = lv_SERVICENR</FPCLINE>
+      <FPCLINE>    SERVER                        = lv_SERVER</FPCLINE>
+      <FPCLINE>    TRACE                         = lv_TRACE</FPCLINE>
+      <FPCLINE>    LANGUAGE                      = lv_LANGUAGE</FPCLINE>
+      <FPCLINE>    CLIENT                        = lv_CLIENT</FPCLINE>
+      <FPCLINE>    USER                          = lv_USER</FPCLINE>
+      <FPCLINE>    PASSWORD                      = lv_PASSWORD</FPCLINE>
+      <FPCLINE>    DESCRIPTION                   = lv_DESCRIPTION</FPCLINE>
+      <FPCLINE>    PROXY_HOST                    = lv_PROXY_HOST</FPCLINE>
+      <FPCLINE>    PROXY_SERVICE                 = lv_PROXY_SERVICE</FPCLINE>
+      <FPCLINE>    PROXY_USER                    = lv_PROXY_USER</FPCLINE>
+      <FPCLINE>    PROXY_PASSWORD                = lv_PROXY_PASSWORD</FPCLINE>
+      <FPCLINE>    SSLAPPLIC                     = lv_SSLAPPLIC</FPCLINE>
+      <FPCLINE>    PATH_PREFIX                   = lv_PATH_PREFIX</FPCLINE>
+      <FPCLINE>    DESTLOCK                      = lv_DESTLOCK</FPCLINE>
+      <FPCLINE>    AUTHORITY                     = lv_AUTHORITY</FPCLINE>
+      <FPCLINE>    SLOGIN                        = lv_SLOGIN</FPCLINE>
+      <FPCLINE>    SAMEUSR                       = lv_SAMEUSR</FPCLINE>
+      <FPCLINE>    SSL                           = lv_SSL</FPCLINE>
+      <FPCLINE>    HTTP_TIMEOUT                  = lv_HTTP_TIMEOUT</FPCLINE>
+      <FPCLINE>    HTTP_VERSION                  = lv_HTTP_VERSION</FPCLINE>
+      <FPCLINE>    HTTP_COMPRESS                 = lv_HTTP_COMPRESS</FPCLINE>
+      <FPCLINE>    COMPRESSREPLY                 = lv_COMPRESSREPLY</FPCLINE>
+      <FPCLINE>    COOKIE_ACCEPT                 = lv_COOKIE_ACCEPT</FPCLINE>
+      <FPCLINE>    SSO_TICKET                    = lv_SSO_TICKET</FPCLINE>
+      <FPCLINE>    CATEGORY                      = lv_CATEGORY</FPCLINE>
+      <FPCLINE>  EXCEPTIONS</FPCLINE>
+      <FPCLINE>    AUTHORITY_NOT_AVAILABLE       = 1</FPCLINE>
+      <FPCLINE>    DESTINATION_NOT_EXIST         = 2</FPCLINE>
+      <FPCLINE>    INFORMATION_FAILURE           = 3</FPCLINE>
+      <FPCLINE>    INTERNAL_FAILURE              = 4</FPCLINE>
+      <FPCLINE>    NO_HTTP_DESTINATION           = 5</FPCLINE>
+      <FPCLINE>    OTHERS                        = 6</FPCLINE>
+      <FPCLINE>          .</FPCLINE>
+      <FPCLINE/>
+      <FPCLINE>  concatenate &apos;\\&apos; lv_SERVER &apos;\sapmnt\Logo\logo_spv.jpg&apos; into LOGO_URL.</FPCLINE>
+      <FPCLINE/>
+     </INITIALIZATION>
+     <FORMS/>
+    </CL_FP_CODING>
+   </cls:CL_FP_CODING>
+  </asx:heap>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_QM_LAB_BMS_PROGRAM_RUNS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>QM BMS program runs</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS_INTERFACE>
+    <SEOCLASSTX>
+     <LANGU>2</LANGU>
+     <DESCRIPT>QM BMS program runs</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_INTERFACE>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Get last run as date/time of submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get last run as date/time of submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Get runs of a submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get runs of a submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Set new run of a submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Set new run of a submitted program</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>EV_LAST_DATE</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Field of type DATS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>EV_LAST_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Field of type DATS</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>EV_LAST_TIME</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Time in CHAR Format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>EV_LAST_TIME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time in CHAR Format</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>IV_WERKS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Plant</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_LAST_RUN</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>IV_MAX_HITS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Natural Number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>IV_MAX_HITS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Natural Number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>IV_WERKS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Plant</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>RT_RUNS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>QM BMS program runs</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>RT_RUNS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>QM BMS program runs</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_RUNS</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_COMMIT</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Should method do a commit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_COMMIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Should method do a commit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_DATE</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>If no date is sumbitted current date is used</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>If no date is sumbitted current date is used</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_REPORT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Program/Transaction in SQL Trace Evaluation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_TIME</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>If no time is submitted current time is used</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_TIME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>If no time is submitted current time is used</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>IV_WERKS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Plant</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SET_RUN</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

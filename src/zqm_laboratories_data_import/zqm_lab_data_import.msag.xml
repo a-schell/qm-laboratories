@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>QM: Data import messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>Plant was not supplied.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Application was not supplied.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>No mapping found for field &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>No material data found for matnr &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>No material number was found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Inspection lot &amp;1 successfully created.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Could not create inspection lot. SY-SUBRC was &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Could not lock inspection lot &amp;1.</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>2</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>2</SPRSL>
+     <ARBGB>ZQM_LAB_DATA_IMPORT</ARBGB>
+     <STEXT>QM: Data import messages</STEXT>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Plant was not supplied.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Application was not supplied.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>No mapping found for field &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>No material data found for matnr &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>No material number was found.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Inspection lot &amp;1 successfully created.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Could not create inspection lot. SY-SUBRC was &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Could not lock inspection lot &amp;1.</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

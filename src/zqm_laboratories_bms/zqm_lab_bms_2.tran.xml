@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TRAN" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TSTC>
+    <TCODE>ZQM_LAB_BMS_2</TCODE>
+    <PGMNA>ZQM_LAB_BMS</PGMNA>
+    <DYPNO>0210</DYPNO>
+   </TSTC>
+   <TSTCC>
+    <TCODE>ZQM_LAB_BMS_2</TCODE>
+    <S_WIN32>X</S_WIN32>
+   </TSTCC>
+   <TSTCT>
+    <SPRSL>E</SPRSL>
+    <TCODE>ZQM_LAB_BMS_2</TCODE>
+    <TTEXT>Search by inspection lot number</TTEXT>
+   </TSTCT>
+   <I18N_TPOOL>
+    <TSTCT>
+     <SPRSL>2</SPRSL>
+     <TTEXT>Search by inspection lot number</TTEXT>
+    </TSTCT>
+   </I18N_TPOOL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

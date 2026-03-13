@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_QM_LABORATORIES_SETTINGS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Settings reader class</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Settings reader class</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Returns field reference customizing for submitted ident valu</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns field reference customizing for submitted ident valu</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>IV_IDENT_KEY</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Identification for the Inspection Point Field Combination</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>IV_IDENT_KEY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Identification for the Inspection Point Field Combination</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>RT_REFERENCES</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Field/Table References</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>RT_REFERENCES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Field/Table References</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_FIELD_REFERENCES</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

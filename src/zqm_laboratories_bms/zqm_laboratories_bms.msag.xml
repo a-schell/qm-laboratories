@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>Error creating a runtime instance</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Inspection lot &amp;1 not found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Inspection lot &amp;1 is already closed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>No keyfields found for inspection lot &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Value &amp;1 is not nummeric.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Value &amp;1 has too many decimal places. Should have not more then &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>No char found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>One ore more operations locked by another user. Maintenance not possible.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>No last run for program &amp;1 found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>SLWID is missing.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Line is missing.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Dataset will be not displayed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Inspection Lot Number is missing</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Operation &amp;1 for line &amp;2 is locked by user &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>No QALS data found for inspection lot &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>No time reporting found for inspection lot &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Please select one row.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>No plan number found for inspection lot &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Condense mapping for plant &amp;2 parameter &amp;1 value &amp;3 is missing.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>019</MSGNR>
+     <TEXT>Please save inspection point before uploading attachments.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>Please select a value field.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>021</MSGNR>
+     <TEXT>Source dataset is not multi edit dataset. Fields are missing.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>022</MSGNR>
+     <TEXT>No dataset found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>023</MSGNR>
+     <TEXT>Can`t update addiditional data for inspection lot &amp;1 operation &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>024</MSGNR>
+     <TEXT>Order is locked. Time reporting not possible for insplot &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>025</MSGNR>
+     <TEXT>An error occured. Time reporting not possible for insplot &amp;1.</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>2</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>2</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Error creating a runtime instance</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Inspection lot &amp;1 not found.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Inspection lot &amp;1 is already closed.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>No keyfields found for inspection lot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Value &amp;1 is not nummeric.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Value &amp;1 has too many decimal places. Should have not more then &amp;2.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>No char found</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>One ore more operations locked by another user. Maintenance not possible.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>No last run for program &amp;1 found.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>SLWID is missing.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Line is missing.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>Dataset will be not displayed.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Inspection Lot Number is missing</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Operation &amp;1 for line &amp;2 is locked by user &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>No QALS data found for inspection lot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>015</MSGNR>
+     <TEXT>No time reporting found for inspection lot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>016</MSGNR>
+     <TEXT>Please select one row.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>017</MSGNR>
+     <TEXT>No plan number found for inspection lot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>018</MSGNR>
+     <TEXT>Condense mapping for plant &amp;2 parameter &amp;1 value &amp;3 is missing.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>019</MSGNR>
+     <TEXT>Please save inspection point before uploading attachments.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>020</MSGNR>
+     <TEXT>Please select a value field.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>021</MSGNR>
+     <TEXT>Source dataset is not multi edit dataset. Fields are missing.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>022</MSGNR>
+     <TEXT>No dataset found</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>023</MSGNR>
+     <TEXT>Can`t update addiditional data for inspection lot &amp;1 operation &amp;2.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>024</MSGNR>
+     <TEXT>Order is locked. Time reporting not possible for insplot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>025</MSGNR>
+     <TEXT>An error occured. Time reporting not possible for insplot &amp;1.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>Fehler beim erzeugen des Runtime Objektes</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Pfüflos &amp;1 wurde nicht gefunden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Prüflos &amp;1 ist bereits geschlossen.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Für das Prüflos &amp;1 konnten keine Schlüsselfelder ermittelt werden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Wert &amp;1 ist nicht nummerisch.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Wert &amp;1 hat zuviele Dezimalstellen. Bitte reduzieren Sie auf &amp;2 Stellen.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Keine Characteristic gefunden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Eine oder mehrere Operationen sind von einem anderen User gesperrt.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Kein letzter Lauf für Programm &amp;1 gefunden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>SLWID fehlt</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Linie fehlt</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>Datensatz wird nicht angezeigt.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Prüfpunktnummer ist nicht vorhanden</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Vorgang &amp;1 für Linie &amp;2 ist gesperrt von User &amp;3</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>015</MSGNR>
+     <TEXT>Keine Zeitrückmeldungen zu Prüflos &amp;1 gefunden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>016</MSGNR>
+     <TEXT>Bitte eine Zeile selektieren.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>017</MSGNR>
+     <TEXT>Keine Plannummer für Prüflos &amp;1 gefunden.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>019</MSGNR>
+     <TEXT>Prüfpunkt muss gespeichert werden bevor Anlagen hochgeladen werden können</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>020</MSGNR>
+     <TEXT>Bitte ein Wertefeld markieren.</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

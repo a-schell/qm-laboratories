@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>No device settings found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Device ID is missing</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>No data submitted</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Invalid directory</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Couldn`t read directory</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Could not determine device id.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>No mapping found for BEDAP code &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>No dataset guid submitted</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Couldn&apos;t update dataset status</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>No settings found for plant &amp;1</TEXT>
+    </T100>
+   </T100>
+   <I18N_LANGS>
+    <LANGU>2</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>2</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>No device settings found</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>Device ID is missing</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>No data submitted</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Invalid directory</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Couldn`t read directory</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Could not determine device id.</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>No mapping found for BEDAP code &amp;1</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>No dataset guid submitted</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>Couldn&apos;t update dataset status</TEXT>
+    </item>
+    <item>
+     <SPRSL>2</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>No settings found for plant &amp;1</TEXT>
+    </item>
+   </T100_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_QM_LABORATORIES_FACTORY</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Laboratories factory class</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Laboratories factory class</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Get laboratories GUI helper</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get laboratories GUI helper</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Get laboratories master object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get laboratories master object</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <SCONAME>RO_INSTANCE</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>GUI helper for laboratories application</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <SCONAME>RO_INSTANCE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>GUI helper for laboratories application</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_GUI_HELPER</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <SCONAME>RO_INSTANCE</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Laboratories master</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <SCONAME>RO_INSTANCE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Laboratories master</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_MASTER</CMPNAME>
+     <SCONAME>ZCX_QM_LABORATORIES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception class</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

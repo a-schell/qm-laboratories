@@ -1,0 +1,22 @@
+FUNCTION Z_QM_CALL_SOSB.
+*"----------------------------------------------------------------------
+*"*"Lokale Schnittstelle:
+*"  IMPORTING
+*"     VALUE(I_VIQMEL) LIKE  VIQMEL STRUCTURE  VIQMEL
+*"     VALUE(I_CUSTOMIZING) LIKE  V_TQ85 STRUCTURE  V_TQ85
+*"  EXPORTING
+*"     VALUE(E_QNQMAMA0) LIKE  QNQMAMA0 STRUCTURE  QNQMAMA0
+*"  TABLES
+*"      TI_IVIQMFE STRUCTURE  WQMFE
+*"      TI_IVIQMUR STRUCTURE  WQMUR
+*"      TI_IVIQMSM STRUCTURE  WQMSM
+*"      TI_IVIQMMA STRUCTURE  WQMMA
+*"      TI_IHPA STRUCTURE  IHPA
+*"      TE_LINES STRUCTURE  TLINE OPTIONAL
+*"  EXCEPTIONS
+*"      ACTION_STOPPED
+*"----------------------------------------------------------------------
+
+  CALL TRANSACTION 'SOSB' AND SKIP FIRST SCREEN.
+
+ENDFUNCTION.

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_QM_LAB_DEVICE_MAPPER</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Data mapper interface</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS_INTERFACE>
+    <SEOCLASSTX>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Data mapper interface</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_INTERFACE>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Map raw data structure to internal target structure</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Map raw data structure to internal target structure</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>IS_DEVICE_SETTINGS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Device Settings</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>IS_DEVICE_SETTINGS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Device Settings</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>IS_TRANSFER_DATA</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Read stored transfer data</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>IS_TRANSFER_DATA</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Read stored transfer data</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_DEVICE_EXCEPTIONS</SCONAME>
+     <LANGU>2</LANGU>
+     <DESCRIPT>Test device exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>MAP</CMPNAME>
+     <SCONAME>ZCX_QM_LAB_DEVICE_EXCEPTIONS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test device exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

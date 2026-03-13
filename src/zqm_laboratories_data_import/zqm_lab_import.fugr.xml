@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>QM: Data import functions</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZQM_LAB_IMPORTTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZQM_LAB_IMPORT</SOBJ_NAME>
+   </INCLUDES>
+  </asx:values>
+ </asx:abap>
+</abapGit>
