@@ -41,6 +41,8 @@ public section.
       ZCX_QM_LAB_DEVICE_EXCEPTIONS .
   methods SET_STATUS
     importing
+      !IV_WERKS type WERKS_D
+      !IV_SESSION_GUID type SYSUUID_C32
       !IV_DATASET_GUID type SYSUUID_C32
       !IV_STATUS type ZQM_DATASET_STATUS
       !IV_PRUEFLOS type QPLOS optional
@@ -95,25 +97,26 @@ ENDCLASS.
 CLASS ZCL_QM_LAB_DEVICE_TRANSFER IMPLEMENTATION.
 
 
-  method ARCHIVE_DATA.
-  DATA: LT_ZQM_DEV_TRANSFER TYPE TABLE OF ZQM_DEV_TRANSFER,
-        LS_ZQM_DEV_TRANSFER TYPE ZQM_DEV_TRANSFER.
+  METHOD archive_data.
+    DATA: lt_zqm_dev_transfer TYPE TABLE OF zqm_dev_transfer,
+          ls_zqm_dev_transfer TYPE zqm_dev_transfer.
 
-  select * FROM ZQM_DEV_TRANSFER INTO TABLE LT_ZQM_DEV_TRANSFER
-    WHERE STATUS = 2 or STATUS = 3.
+    SELECT * FROM zqm_dev_transfer INTO TABLE lt_zqm_dev_transfer
+      WHERE status = 2 OR status = 3.
 
-  loop AT LT_ZQM_DEV_TRANSFER INTO LS_ZQM_DEV_TRANSFER.
-    INSERT INTO ZQM_DEV_TRAN_ARC VALUES LS_ZQM_DEV_TRANSFER.
-    " Delete the data in the source table.
-    if sy-subrc = 0.
-      delete FROM ZQM_DEV_TRANSFER WHERE
-        SESSION_GUID = LS_ZQM_DEV_TRANSFER-SESSION_GUID AND
-        DATASET_GUID = LS_ZQM_DEV_TRANSFER-DATASET_GUID AND
-        STATUS = LS_ZQM_DEV_TRANSFER-status.
-    endif.
-  endloop.
+    LOOP AT lt_zqm_dev_transfer INTO ls_zqm_dev_transfer.
+      INSERT INTO zqm_dev_tran_arc VALUES ls_zqm_dev_transfer.
+      " Delete the data in the source table.
+      IF sy-subrc = 0.
+        DELETE FROM zqm_dev_transfer WHERE
+          werks        = ls_zqm_dev_transfer-werks AND
+          session_guid = ls_zqm_dev_transfer-session_guid AND
+          dataset_guid = ls_zqm_dev_transfer-dataset_guid AND
+          status = ls_zqm_dev_transfer-status.
+      ENDIF.
+    ENDLOOP.
 
-  endmethod.
+  ENDMETHOD.
 
 
 METHOD constructor.
@@ -364,19 +367,27 @@ METHOD set_status.
 * Update status in database
   IF iv_prueflos IS SUPPLIED.
     UPDATE zqm_dev_transfer
-     SET status = iv_status
-       prueflos = iv_prueflos
-          aenam = sy-uname
-          aedat = sy-datum
-          aezet = sy-uzeit
-    WHERE dataset_guid = iv_dataset_guid.
+     SET
+          status   = iv_status
+          prueflos = iv_prueflos
+          aenam    = sy-uname
+          aedat    = sy-datum
+          aezet    = sy-uzeit
+    WHERE
+          werks        = iv_werks AND
+          session_guid = iv_session_guid AND
+          dataset_guid = iv_dataset_guid.
   ELSE.
     UPDATE zqm_dev_transfer
-     SET status = iv_status
-         aenam = sy-uname
-         aedat = sy-datum
-         aezet = sy-uzeit
-    WHERE dataset_guid = iv_dataset_guid.
+     SET
+         status = iv_status
+         aenam  = sy-uname
+         aedat  = sy-datum
+         aezet  = sy-uzeit
+    WHERE
+          werks        = iv_werks AND
+          session_guid = iv_session_guid AND
+          dataset_guid = iv_dataset_guid.
   ENDIF.
 
   IF sy-subrc IS NOT INITIAL.

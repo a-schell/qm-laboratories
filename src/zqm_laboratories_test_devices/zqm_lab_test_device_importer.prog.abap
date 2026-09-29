@@ -275,7 +275,9 @@ FORM create_inspection_operations.
 
       <wa_transfer_data>-status = co_status_success.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
                                 iv_status       = <wa_transfer_data>-status
                                 iv_commit       = abap_true ).
       IF p_debug = abap_true.
@@ -616,7 +618,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 
       <wa_transfer_data>-status = co_status_no_insplot.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
                                 iv_status       = <wa_transfer_data>-status
                                 iv_commit       = abap_true ).
       IF p_debug = abap_true.
@@ -642,7 +646,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 
       <wa_transfer_data>-status = co_status_bedap.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
                                 iv_status       = <wa_transfer_data>-status
                                 iv_commit       = abap_true ).
       IF p_debug = abap_true.
@@ -665,7 +671,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 * No operation found.
       <wa_transfer_data>-status = co_status_no_operation_char.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
                                 iv_status       = <wa_transfer_data>-status
                                 iv_commit       = abap_true ).
       IF p_debug = abap_true.
@@ -853,9 +861,11 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 * No operation found.
       <wa_transfer_data>-status = co_status_no_operation_char.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                              iv_status       = <wa_transfer_data>-status
-                              iv_commit       = abap_true ).
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
+                                iv_status       = <wa_transfer_data>-status
+                                iv_commit       = abap_true ).
       IF p_debug = abap_true.
         WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
       ENDIF.
@@ -926,7 +936,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
         <wa_transfer_data>-status = co_status_success.
       ENDIF.
 
-      obj_transfer->set_status( iv_dataset_guid = <wa_transfer_data>-dataset_guid
+      obj_transfer->set_status( iv_werks        = p_plant
+                                iv_session_guid = <wa_transfer_data>-session_guid
+                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
                                 iv_status       = <wa_transfer_data>-status
                                 iv_prueflos     = <wa_inspection_points>-insplot
                                 iv_commit       = abap_true ).
