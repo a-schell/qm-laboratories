@@ -46,7 +46,7 @@ FUNCTION z_qm_number_conversion.
       lv_thousands = ','.
       lv_decimal   = '.'.
     WHEN 'Y'.    " 1 234 567,89
-      lv_thousands = space.
+      lv_thousands = '\s+'.
       lv_decimal   = ','.
   ENDCASE.
 

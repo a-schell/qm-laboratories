@@ -590,7 +590,9 @@ FORM fill_alv_data_object.
              ('LINE') = <wa_output_data>-line
              ('PROBENART') = <wa_output_data>-probenart
              ('DATE') = <wa_output_data>-date
-             ('TIME') = <wa_output_data>-time.
+             ('TIME') = <wa_output_data>-time
+             ('BALLENNUMMER') = <wa_output_data>-ballennummer.  "neu Mai 2026 Ticket SR-881777
+*   Ticket SR-881777: es wurde bei RnD linie 33 immer nur der erste Record wo prüflos/line/probenart/date/time übereinstimmte übernommen
 
     IF sy-subrc IS NOT INITIAL.
       APPEND INITIAL LINE TO <lt_alv_data> ASSIGNING <wa_alv_data>.

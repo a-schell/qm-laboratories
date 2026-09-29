@@ -21,11 +21,11 @@ CLASS ZCL_QM_LAB_BMS_READER IMPLEMENTATION.
 
 
   METHOD zif_qm_lab_bms_reader~search.
-    DATA: ra_lines TYPE RANGE OF zbms_linienr,
+    DATA: ra_lines      TYPE RANGE OF zbms_linienr,
           ra_workcenter TYPE RANGE OF qprplatz.
     DATA lt_insplot_list TYPE STANDARD TABLE OF bapi2045l1.
     DATA: lt_system_status TYPE STANDARD TABLE OF bapi2045ss,
-          lt_user_status TYPE STANDARD TABLE OF bapi2045us.
+          lt_user_status   TYPE STANDARD TABLE OF bapi2045us.
     DATA wa_language TYPE bapi2045la.
     DATA lt_operations TYPE STANDARD TABLE OF bapi2045l2.
     DATA wa_qals TYPE qals.
@@ -35,17 +35,17 @@ CLASS ZCL_QM_LAB_BMS_READER IMPLEMENTATION.
     DATA lv_creat_dat TYPE qdatumerst.
     DATA wa_operation TYPE bapi2045l2.
 
-    DATA: wa_general TYPE bapi2045d_il0,
-          wa_task_list TYPE bapi2045d_il1,
+    DATA: wa_general               TYPE bapi2045d_il0,
+          wa_task_list             TYPE bapi2045d_il1,
           wa_customer_include_data TYPE bapi2045ci.
 
     CONSTANTS: co_decision TYPE j_istat VALUE 'I0218',
-               co_storno TYPE j_istat VALUE 'I0224'.
+               co_storno   TYPE j_istat VALUE 'I0224'.
 
-    FIELD-SYMBOLS: <lt_lines> TYPE ANY TABLE,
-                   <lt_workcenter> TYPE ANY TABLE,
+    FIELD-SYMBOLS: <lt_lines>        TYPE ANY TABLE,
+                   <lt_workcenter>   TYPE ANY TABLE,
                    <wa_insplot_list> TYPE bapi2045l1,
-                   <wa_operations> TYPE bapi2045l2.
+                   <wa_operations>   TYPE bapi2045l2.
 
 * Fill ranges
     IF io_lines IS BOUND.
@@ -214,12 +214,12 @@ CLASS ZCL_QM_LAB_BMS_READER IMPLEMENTATION.
 
 
   METHOD zif_qm_lab_bms_reader~search_by_insplot.
-    DATA: wa_general TYPE bapi2045d_il0,
-          wa_task_list TYPE bapi2045d_il1,
+    DATA: wa_general               TYPE bapi2045d_il0,
+          wa_task_list             TYPE bapi2045d_il1,
           wa_customer_include_data TYPE bapi2045ci.
     DATA wa_language TYPE bapi2045la.
     DATA: lt_system_status TYPE STANDARD TABLE OF bapi2045ss,
-          lt_user_status TYPE STANDARD TABLE OF bapi2045us.
+          lt_user_status   TYPE STANDARD TABLE OF bapi2045us.
     DATA lt_operations TYPE STANDARD TABLE OF bapi2045l2.
     DATA wa_return TYPE bapiret2.
     DATA wa_result TYPE zqm_s_lab_bms_search_result.
@@ -227,7 +227,7 @@ CLASS ZCL_QM_LAB_BMS_READER IMPLEMENTATION.
     DATA: ra_workcenter TYPE RANGE OF qprplatz.
 
     CONSTANTS: co_decision TYPE j_istat VALUE 'I0218',
-               co_storno TYPE j_istat VALUE 'I0224'.
+               co_storno   TYPE j_istat VALUE 'I0224'.
 
     FIELD-SYMBOLS: <wa_operations> TYPE bapi2045l2,
                    <lt_workcenter> TYPE ANY TABLE.

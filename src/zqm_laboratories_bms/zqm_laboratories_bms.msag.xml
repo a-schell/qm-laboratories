@@ -163,6 +163,30 @@
      <MSGNR>025</MSGNR>
      <TEXT>An error occured. Time reporting not possible for insplot &amp;1.</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>026</MSGNR>
+     <TEXT>Value &amp;1 exceeds upper tolerance limit &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>027</MSGNR>
+     <TEXT>Value &amp;1 is below lower tolerance limit &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>028</MSGNR>
+     <TEXT>Value &amp;1 conversion error.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>029</MSGNR>
+     <TEXT>Value &amp;1 is not compatible with BMS field &amp;2 (max value &amp;3).</TEXT>
+    </T100>
    </T100>
    <I18N_LANGS>
     <LANGU>2</LANGU>
@@ -398,6 +422,16 @@
      <SPRSL>D</SPRSL>
      <MSGNR>020</MSGNR>
      <TEXT>Bitte ein Wertefeld markieren.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>026</MSGNR>
+     <TEXT>Wert &amp;1 überschreitet die obere Toleranzgrenze &amp;2.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>027</MSGNR>
+     <TEXT>Wert &amp;1 unterschreitet die untere Toleranzgrenze &amp;2.</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

@@ -37,7 +37,6 @@ private section.
       value(RO_KEY_DATA) type ref to DATA
     raising
       ZCX_QM_LAB_BMS_EXCEPTIONS .
-  type-pools ABAP .
   methods _CHECK_DATA_TO_MAINTAIN
     importing
       !IS_DATA_TO_MAINTAIN type ZQM_S_LAB_BMS_MAINTAIN_DATA
@@ -134,6 +133,27 @@ private section.
       !IS_MESSAGE type BAPIRET2 optional
     raising
       ZCX_QM_LAB_BMS_EXCEPTIONS .
+  methods _CONVERT_NUMBER
+    importing
+      !IV_INPUT type STRING
+    returning
+      value(RV_OUTPUT) type F .
+  methods _CHECK_VALUE_BMS_DDIC
+    importing
+      !IV_WERKS type WERKS_D
+      !IV_VALUE type F
+      !IV_DEC_PLACES type I
+      !IV_MSTR_CHAR type QMSTR_CHAR
+    returning
+      value(RT_MESSAGES) type BAPIRET2_T .
+  methods _APPEND_VALIDATION_ERROR
+    importing
+      !IV_NUMBER type SY-MSGNO
+      !IV_MESSAGE_V1 type SYMSGV optional
+      !IV_MESSAGE_V2 type SYMSGV optional
+      !IV_MESSAGE_V3 type SYMSGV optional
+    changing
+      !CT_MESSAGES type BAPIRET2_T .
 ENDCLASS.
 
 
@@ -142,26 +162,27 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
 
 
   METHOD zif_qm_lab_bms_runtime~check_data.
-    DATA: lv_insplot TYPE qibplosnr,
-          lv_inspoper TYPE qibpvornr,
-          lv_inspchar TYPE qibpmerknr,
-          lv_mstr_char TYPE qmstr_char.
-    DATA lv_field_prefix TYPE string.
-    DATA lv_fieldname TYPE fieldname.
-    DATA lv_converted_value TYPE swaexpdef-expr.
-    DATA lv_decimals TYPE dfies-decimals.
-    DATA lv_value TYPE string.
+    DATA:
+      lv_insplot         TYPE qibplosnr,
+      lv_inspoper        TYPE qibpvornr,
+      lv_inspchar        TYPE qibpmerknr,
+      lv_mstr_char       TYPE qmstr_char,
+      lv_field_prefix    TYPE string,
+      lv_fieldname       TYPE fieldname,
+      lv_converted_value TYPE swaexpdef-expr,
+      lv_decimals        TYPE dfies-decimals,
+      lv_user_value      TYPE f.
 
-    FIELD-SYMBOLS: <wa_modified_cells> TYPE lvc_s_modi,
-                   <lt_data> TYPE STANDARD TABLE,
-                   <wa_data> TYPE any,
-                   <lv_insplot> TYPE qibplosnr,
-                   <lv_inspoper> TYPE qibpvornr,
-                   <lv_inspchar> TYPE qibpmerknr,
-                   <lv_dd_hndl> TYPE any,
-                   <wa_maintain_data> TYPE zqm_s_lab_bms_maintain_data,
-                   <wa_values> TYPE zqm_s_lab_bms_measure_data,
-                   <wa_messages> TYPE bapiret2.
+    FIELD-SYMBOLS:
+      <wa_modified_cells> TYPE lvc_s_modi,
+      <lt_data>           TYPE STANDARD TABLE,
+      <wa_data>           TYPE any,
+      <lv_insplot>        TYPE qibplosnr,
+      <lv_inspoper>       TYPE qibpvornr,
+      <lv_inspchar>       TYPE qibpmerknr,
+      <lv_dd_hndl>        TYPE any,
+      <wa_maintain_data>  TYPE zqm_s_lab_bms_maintain_data,
+      <wa_values>         TYPE zqm_s_lab_bms_measure_data.
 
     CONSTANTS: co_numeric TYPE string VALUE '0123456789,.- '.
 
@@ -232,17 +253,13 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
         WITH KEY inspchar = lv_inspchar.
 
         IF sy-subrc IS INITIAL.
-          lv_value = <wa_modified_cells>-value.
-
-          IF lv_value CN co_numeric.
-            APPEND INITIAL LINE TO rt_messages ASSIGNING <wa_messages>.
-            <wa_messages>-id = 'ZQM_LABORATORIES_BMS'.
-            <wa_messages>-number = 004.
-            <wa_messages>-type = 'E'.
-            <wa_messages>-message_v1 = <wa_modified_cells>-value.
-            <wa_messages>-row = <wa_modified_cells>-row_id.
-            <wa_messages>-field = <wa_modified_cells>-fieldname.
-            UNASSIGN <wa_messages>.
+          IF CONV string( <wa_modified_cells>-value ) CN co_numeric.
+            APPEND VALUE #(
+              id = 'ZQM_LABORATORIES_BMS'
+              number = 004
+              type = 'E'
+              message_v1 = <wa_modified_cells>-value
+            ) TO rt_messages.
           ELSE.
             TRY.
                 CALL FUNCTION 'Z_QM_NUMBER_CONVERSION'
@@ -258,22 +275,67 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
                     decimals   = lv_decimals.
 
                 IF lv_decimals > <wa_values>-dec_places.
-                  APPEND INITIAL LINE TO rt_messages ASSIGNING <wa_messages>.
-                  <wa_messages>-id = 'ZQM_LABORATORIES_BMS'.
-                  <wa_messages>-number = 005.
-                  <wa_messages>-type = 'E'.
-                  <wa_messages>-message_v1 = <wa_modified_cells>-value.
-
-                  <wa_messages>-message_v2 = <wa_values>-dec_places.
-                  CONDENSE <wa_messages>-message_v2 NO-GAPS.
-
-                  <wa_messages>-row = <wa_modified_cells>-row_id.
-                  <wa_messages>-field = <wa_modified_cells>-fieldname.
-                  UNASSIGN <wa_messages>.
+                  APPEND VALUE #(
+                    id = 'ZQM_LABORATORIES_BMS'
+                    number = 005
+                    type = 'E'
+                    message_v1 = <wa_modified_cells>-value
+                    message_v2 = <wa_values>-dec_places
+                  ) TO rt_messages.
                 ENDIF.
+
+                " PL check
+                lv_user_value = me->_convert_number( CONV #( <wa_modified_cells>-value ) ).
+                IF <wa_values>-up_tol_lmt IS NOT INITIAL AND
+                   lv_user_value
+                    >
+                   me->_convert_number( CONV #( <wa_values>-up_tol_lmt ) ).
+
+                  _append_validation_error(
+                    EXPORTING
+                      iv_number     = 026
+                      iv_message_v1 = CONV #( <wa_modified_cells>-value )
+                      iv_message_v2 = CONV #( <wa_values>-up_tol_lmt )
+                    CHANGING
+                      ct_messages   = rt_messages ).
+                ENDIF.
+
+                IF <wa_values>-lw_tol_lmt IS NOT INITIAL AND
+                   lv_user_value
+                    <
+                   me->_convert_number( CONV #( <wa_values>-lw_tol_lmt ) ).
+
+                  _append_validation_error(
+                    EXPORTING
+                      iv_number     = 027
+                      iv_message_v1 = CONV #( <wa_modified_cells>-value )
+                      iv_message_v2 = CONV #( <wa_values>-lw_tol_lmt )
+                    CHANGING
+                      ct_messages   = rt_messages ).
+                ENDIF.
+
+                " check the value against BMS data element
+                APPEND LINES OF me->_check_value_bms_ddic(
+                  iv_werks      = '1101'
+                  iv_value      = lv_user_value"<wa_modified_cells>-value
+                  iv_dec_places = CONV i( <wa_values>-dec_places )
+                  iv_mstr_char  = <wa_values>-mstr_char
+                ) TO rt_messages.
+
               CATCH cx_sy_conversion_no_number.
-* It`s okay. Number can have already the right format. Non numeric values get catched earlier
+                APPEND VALUE #(
+                  id = 'ZQM_LABORATORIES_BMS'
+                  number = 028
+                  type = 'E'
+                  message_v1 = <wa_modified_cells>-value
+                ) TO rt_messages.
             ENDTRY.
+
+            " fill row / field for all error messages
+            LOOP AT  rt_messages ASSIGNING FIELD-SYMBOL(<fs_message>).
+              <fs_message>-row = <wa_modified_cells>-row_id.
+              <fs_message>-field = <wa_modified_cells>-fieldname.
+            ENDLOOP.
 
             CLEAR: lv_decimals, lv_converted_value.
           ENDIF.
@@ -907,6 +969,28 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
   ENDMETHOD.                    "zif_qm_lab_bms_runtime~show_time_reporting
 
 
+  METHOD _append_validation_error.
+
+    DATA(lv_message_v1) = iv_message_v1.
+    DATA(lv_message_v2) = iv_message_v2.
+    DATA(lv_message_v3) = iv_message_v3.
+
+    CONDENSE lv_message_v1 NO-GAPS.
+    CONDENSE lv_message_v2 NO-GAPS.
+    CONDENSE lv_message_v3 NO-GAPS.
+
+    APPEND VALUE #(
+         id = 'ZQM_LABORATORIES_BMS'
+         number = iv_number
+         type = 'W'
+         message_v1 = lv_message_v1
+         message_v2 = lv_message_v2
+         message_v3 = lv_message_v3
+       ) TO ct_messages.
+
+  ENDMETHOD.
+
+
   METHOD _build_key_structure.
     DATA wa_tq79 TYPE tq79.
     DATA lv_langu TYPE spras.
@@ -1054,11 +1138,109 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
   ENDMETHOD.                    "_check_data_to_maintain
 
 
+  METHOD _check_value_bms_ddic.
+
+    DATA:
+      lr_data TYPE REF TO data.
+
+    FIELD-SYMBOLS:
+      <lv_target> TYPE any,
+      <lv_max>    TYPE any.
+
+    " Step 1: Read mapping entry
+    SELECT pargrp, parname
+      FROM zbms_if_mappqm
+      WHERE werks = @iv_werks
+        AND mkmnr = @iv_mstr_char
+      ORDER BY version DESCENDING
+      INTO TABLE @DATA(lt_mappqm)
+       UP TO 1 ROWS.
+
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
+
+    " Step 2: Derive target table and field
+    DATA(lv_tabname) = SWITCH #( lt_mappqm[ 1 ]-pargrp
+      WHEN 'LAB' THEN 'ZBMS_LABOR_W'
+      WHEN 'KAR' THEN 'ZBMS_KARDE_W' ).
+
+    DATA(lv_fieldname) = lt_mappqm[ 1 ]-parname.
+
+    IF lv_fieldname IS INITIAL OR
+       lv_fieldname IS INITIAL.
+
+      RETURN.
+    ENDIF.
+
+    " Step 3: Dynamically create a variable of the exact target field type via RTTI
+    TRY.
+        DATA(lo_descr) = cl_abap_typedescr=>describe_by_name( lv_tabname ).
+        IF lo_descr IS NOT BOUND.
+          RETURN.
+        ENDIF.
+
+        DATA(lo_struct) = CAST cl_abap_structdescr( lo_descr ).
+        DATA(lo_field)  = lo_struct->get_component_type( p_name = lv_fieldname ).
+        CREATE DATA lr_data TYPE HANDLE lo_field.
+        ASSIGN lr_data->* TO <lv_target>.
+
+        DATA(lr_max) = cl_abap_exceptional_values=>get_max_value( <lv_target> ).
+        ASSIGN lr_max->* TO <lv_max>.
+      CATCH cx_root.
+        RETURN.
+    ENDTRY.
+
+    " Step 4: Check decimal precision.
+    " ABAP does NOT raise an exception when assigning to a P field with fewer
+    " decimal places — it silently truncates. So we validate explicitly.
+    IF lo_field->type_kind = cl_abap_typedescr=>typekind_numeric."packed.
+      DATA(lv_target_dec_places) = CAST cl_abap_elemdescr( lo_field )->decimals.
+      IF iv_dec_places > lv_target_dec_places.
+        _append_validation_error(
+          EXPORTING
+            iv_number     = 029
+            iv_message_v1 = CONV #( iv_value )
+            iv_message_v2 = CONV #( lv_fieldname )
+            iv_message_v3 = |{ <lv_max> }|
+          CHANGING
+            ct_messages   = rt_messages ).
+      ENDIF.
+    ENDIF.
+
+    " Step 5: Try assigning IV_VALUE — ABAP raises an exception if value overflows
+    TRY.
+        <lv_target> = iv_value.
+      CATCH cx_sy_conversion_overflow cx_sy_conversion_no_number.
+        _append_validation_error(
+          EXPORTING
+            iv_number     = 029
+            iv_message_v1 = CONV #( iv_value )
+            iv_message_v2 = CONV #( lv_fieldname )
+            iv_message_v3 = |{ <lv_max> }|
+          CHANGING
+            ct_messages   = rt_messages ).
+    ENDTRY.
+
+  ENDMETHOD.
+
+
+  METHOD _convert_number.
+
+    CALL FUNCTION 'Z_QM_NUMBER_CONVERSION'
+      EXPORTING
+        iv_external = iv_input
+      IMPORTING
+        ev_internal = rv_output.
+
+  ENDMETHOD.
+
+
   METHOD _create_value_data.
     DATA obj_data_descr TYPE REF TO cl_abap_datadescr.
     DATA obj_dec TYPE REF TO data.
     DATA obj_calculation TYPE REF TO zcl_qm_char_calculation.
-    DATA: wa_operation TYPE bapi2045l2,
+    DATA: wa_operation              TYPE bapi2045l2,
           wa_insppoint_requirements TYPE bapi2045d5.
     DATA lt_char_requirements TYPE STANDARD TABLE OF bapi2045d1.
     DATA wa_values TYPE zqm_s_lab_bms_measure_data.
@@ -1067,7 +1249,7 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
     DATA lv_htype TYPE dd01v-datatype.
 
     FIELD-SYMBOLS: <wa_char_requirements> TYPE bapi2045d1,
-                   <wa_qpmt> TYPE qpmt.
+                   <wa_qpmt>              TYPE qpmt.
 
     CREATE OBJECT obj_calculation.
 
@@ -1083,6 +1265,7 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
       TABLES
         char_requirements      = lt_char_requirements.
 
+
     LOOP AT lt_char_requirements ASSIGNING <wa_char_requirements>.
 * Create data object for value field
       obj_data_descr ?= cl_abap_elemdescr=>describe_by_name( 'QMEAN_VAL' ).
@@ -1093,8 +1276,8 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
       wa_values-dec_places = <wa_char_requirements>-dec_places.
       wa_values-unit = <wa_char_requirements>-meas_unit.
       wa_values-unit_text = <wa_char_requirements>-meas_unit.
-      wa_values-up_tol_lmt = <wa_char_requirements>-up_tol_lmt.
-      wa_values-lw_tol_lmt = <wa_char_requirements>-lw_tol_lmt.
+      wa_values-up_tol_lmt = <wa_char_requirements>-up_pls_lmt.
+      wa_values-lw_tol_lmt = <wa_char_requirements>-lw_pls_lmt.
 
 * Read Info fields from Characteristics LAGAHW 21.06.2019
       CALL FUNCTION 'NUMERIC_CHECK'
