@@ -187,6 +187,18 @@
      <MSGNR>029</MSGNR>
      <TEXT>Value &amp;1 is not compatible with BMS field &amp;2 (max value &amp;3).</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>030</MSGNR>
+     <TEXT>Retest required: &amp;1 value &amp;2 is below grading lower limit &amp;3 (lot &amp;4)</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>031</MSGNR>
+     <TEXT>Retest required: &amp;1 value &amp;2 exceeds grading upper limit &amp;3 (lot &amp;4)</TEXT>
+    </T100>
    </T100>
    <I18N_LANGS>
     <LANGU>2</LANGU>
@@ -432,6 +444,16 @@
      <SPRSL>D</SPRSL>
      <MSGNR>027</MSGNR>
      <TEXT>Wert &amp;1 unterschreitet die untere Toleranzgrenze &amp;2.</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>030</MSGNR>
+     <TEXT>Retest nötig: &amp;1 Wert &amp;2 unterschreitet Grading-Untergrenze &amp;3 (lot &amp;4)</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>031</MSGNR>
+     <TEXT>Retest nötig: &amp;1 Wert &amp;2 überschreitet Grading-Obergrenze &amp;3 (lot &amp;4)</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

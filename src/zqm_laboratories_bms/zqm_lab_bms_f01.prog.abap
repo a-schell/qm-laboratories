@@ -318,10 +318,11 @@ ENDFORM.                    "fill_multi_data_objects
 *       text
 *----------------------------------------------------------------------*
 FORM save.
-  DATA lv_popup_answer TYPE char1.
-  DATA: lt_messages TYPE bapiret2_t.
-  DATA obj_temp_data TYPE REF TO data.
-  DATA obj_ui_helper TYPE REF TO zif_qm_lab_bms_ui.
+  DATA: lv_popup_answer TYPE char1,
+        lt_messages TYPE bapiret2_t,
+        lt_grading_messages TYPE bapiret2_t,
+        obj_temp_data TYPE REF TO data,
+        obj_ui_helper TYPE REF TO zif_qm_lab_bms_ui.
 
   CLEAR gv_check_errors_occured.
 
@@ -363,8 +364,11 @@ FORM save.
   obj_ui_helper->update_dtm_from_multi( EXPORTING io_multi_maintain_data = obj_multi_mnt_data_object
                                         CHANGING ct_data_to_maintain = gt_data_to_maintain ).
 
-  obj_runtime->save_data( IMPORTING et_messages = lt_messages
-                          CHANGING ct_data_to_maintain = gt_data_to_maintain ).
+  obj_runtime->save_data( IMPORTING et_messages         = lt_messages
+                                    et_grading_messages = lt_grading_messages
+                          CHANGING ct_data_to_maintain  = gt_data_to_maintain ).
+
+  PERFORM show_messages_as_popup USING lt_grading_messages.
 
   READ TABLE lt_messages
   WITH KEY type = 'E'
@@ -400,7 +404,7 @@ FORM save.
     obj_multi_mnt_alv->refresh_table_display( ).
   ENDIF.
 
-  FREE lt_messages.
+  FREE: lt_messages, lt_grading_messages.
 ENDFORM.                    "save
 
 *&---------------------------------------------------------------------*
@@ -542,13 +546,10 @@ ENDFORM.                    "save_time_reporting
 *----------------------------------------------------------------------*
 FORM show_time_reporting.
   DATA lt_messages TYPE bapiret2_t.
-  DATA lt_messages_display TYPE esp1_message_tab_type.
   DATA lt_selected_rows TYPE lvc_t_row.
   DATA lv_insplot TYPE qibplosnr.
 
-  FIELD-SYMBOLS: <wa_messages> TYPE bapiret2,
-                 <wa_messages_display> TYPE esp1_message_wa_type,
-                 <lt_data> TYPE STANDARD TABLE,
+  FIELD-SYMBOLS: <lt_data> TYPE STANDARD TABLE,
                  <wa_data> TYPE any,
                  <lv_insplot> TYPE any,
                  <wa_selected_rows> TYPE lvc_s_row.
@@ -593,8 +594,30 @@ FORM show_time_reporting.
 * Show data
   lt_messages = obj_runtime->show_time_reporting( iv_insplot = lv_insplot ).
 
-  IF lt_messages[] IS NOT INITIAL.
-    LOOP AT lt_messages ASSIGNING <wa_messages>.
+  PERFORM show_messages_as_popup USING lt_messages.
+
+  CLEAR lv_insplot.
+  FREE: lt_messages, lt_selected_rows.
+ENDFORM.                    "show_time_reporting
+
+*&---------------------------------------------------------------------*
+*&      Form  show_messages_as_popup
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*      -->IT_MESSAGES  text
+*----------------------------------------------------------------------*
+FORM show_messages_as_popup USING it_messages TYPE bapiret2_t.
+  DATA lt_messages_display TYPE esp1_message_tab_type.
+
+  FIELD-SYMBOLS: <wa_messages> TYPE bapiret2,
+                 <wa_messages_display> TYPE esp1_message_wa_type.
+
+  IF it_messages[] IS INITIAL.
+    RETURN.
+  ENDIF.
+
+  LOOP AT it_messages ASSIGNING <wa_messages>.
       APPEND INITIAL LINE TO lt_messages_display ASSIGNING <wa_messages_display>.
       <wa_messages_display>-msgid = <wa_messages>-id.
       <wa_messages_display>-msgty = <wa_messages>-type.
@@ -603,20 +626,15 @@ FORM show_time_reporting.
       <wa_messages_display>-msgv2 = <wa_messages>-message_v2.
       <wa_messages_display>-msgv3 = <wa_messages>-message_v3.
       <wa_messages_display>-msgv4 = <wa_messages>-message_v4.
-      UNASSIGN <wa_messages_display>.
     ENDLOOP.
 
-* Show messages
     CALL FUNCTION 'C14Z_MESSAGES_SHOW_AS_POPUP'
       TABLES
         i_message_tab = lt_messages_display.
 
     FREE lt_messages_display.
-  ENDIF.
 
-  CLEAR lv_insplot.
-  FREE: lt_messages, lt_selected_rows.
-ENDFORM.                    "show_time_reporting
+ENDFORM.                    "show_messages_as_popup
 
 *&---------------------------------------------------------------------*
 *&      Form  show_additional_value_data

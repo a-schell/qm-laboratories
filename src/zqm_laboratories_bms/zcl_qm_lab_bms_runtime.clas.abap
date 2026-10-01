@@ -25,8 +25,24 @@ CLASS zcl_qm_lab_bms_runtime DEFINITION
   PROTECTED SECTION.
 private section.
 
+  types:
+    tt_gradmtrx_itm TYPE STANDARD TABLE OF zbms_s_bapi_gradmtrx_itm WITH DEFAULT KEY .
+  types:
+    BEGIN OF ts_gradmtrx_buffer,
+      insplot TYPE qibplosnr,
+      items   TYPE tt_gradmtrx_itm,
+    END OF ts_gradmtrx_buffer .
+  types:
+    tt_gradmtrx_buffer TYPE SORTED TABLE OF ts_gradmtrx_buffer WITH UNIQUE KEY insplot .
+  types:
+    BEGIN OF ts_bms_mapping,
+      pargrp  TYPE zbms_if_mappqm-pargrp,
+      parname TYPE zbms_if_mappqm-parname,
+    END OF ts_bms_mapping .
+
   class-data AT_CHAR_REQUIREMENTS type ZQM_T_LABORATORIES_CHARREQU .
   data AT_CURRENT_DATA_TO_MAINTAIN type ZQM_T_LAB_BMS_MAINTAIN_DATA .
+  data AT_GRADMTRX_BUFFER type TT_GRADMTRX_BUFFER .
   data AT_QALS_BUFFER type QALS_TAB .
   class-data AT_TQ79_BUFFER type TT_TQ79 .
 
@@ -154,6 +170,37 @@ private section.
       !IV_MESSAGE_V3 type SYMSGV optional
     changing
       !CT_MESSAGES type BAPIRET2_T .
+  methods _CHECK_GRADING_LIMITS
+    importing
+      !IS_DATA_TO_MAINTAIN type ZQM_S_LAB_BMS_MAINTAIN_DATA
+      !IT_SAMPLE_RESULTS type RPLM_TT_BAPI2045D3
+    returning
+      value(RT_MESSAGES) type BAPIRET2_T
+    raising
+      ZCX_QM_LAB_BMS_EXCEPTIONS .
+  methods _GET_GRADING_MATRIX_ITEMS
+    importing
+      !IS_DATA_TO_MAINTAIN type ZQM_S_LAB_BMS_MAINTAIN_DATA
+    returning
+      value(RT_ITEMS) type TT_GRADMTRX_ITM
+    raising
+      ZCX_QM_LAB_BMS_EXCEPTIONS .
+  methods _GET_UMREIF_CHAR
+    importing
+      !IV_UMREIF type ZBMS_UMREIFUNG
+    returning
+      value(RV_UMREIF) type ZBMS_UMREIFUNG_CHAR1 .
+  methods _GET_QALS
+    importing
+      !IV_INSPLOT type QIBPLOSNR
+    returning
+      value(RS_QALS) type QALS .
+  methods _GET_BMS_PARAMETER_MAPPING
+    importing
+      !IV_WERKS type WERKS_D
+      !IV_MSTR_CHAR type QMSTR_CHAR
+    returning
+      value(RS_MAPPING) type TS_BMS_MAPPING .
 ENDCLASS.
 
 
@@ -704,6 +751,10 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
 
 * Save additional values
         APPEND LINES OF me->_save_additional_values_data( is_data_to_maintain = wa_data_to_maintain ) TO et_messages.
+
+* Check grading matrix limits
+        APPEND LINES OF me->_check_grading_limits( is_data_to_maintain = wa_data_to_maintain
+                                                   it_sample_results   = lt_sample_results_work ) TO et_grading_messages.
       ENDIF.
 
       IF wa_return IS NOT INITIAL.
@@ -1138,6 +1189,79 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
   ENDMETHOD.                    "_check_data_to_maintain
 
 
+  METHOD _check_grading_limits.
+
+    DATA lv_value TYPE zbms_s_bapi_gradmtrx_itm-sollwert.
+
+    CONSTANTS co_msg_id TYPE symsgid VALUE 'ZQM_LABORATORIES_BMS'.
+
+    DATA(lt_gradmtrx_items) = _get_grading_matrix_items( is_data_to_maintain ).
+
+    IF lt_gradmtrx_items IS INITIAL.
+      RETURN.
+    ENDIF.
+
+    LOOP AT is_data_to_maintain-values ASSIGNING FIELD-SYMBOL(<ls_values>).
+      ASSIGN it_sample_results[ inspchar = <ls_values>-inspchar ] TO FIELD-SYMBOL(<ls_sample_result>).
+      IF sy-subrc <> 0.
+        CONTINUE.
+      ENDIF.
+
+      TRY.
+          lv_value = <ls_sample_result>-mean_value.
+        CATCH cx_sy_conversion_error.
+          CONTINUE.
+      ENDTRY.
+
+      IF lv_value IS INITIAL.
+        CONTINUE.
+      ENDIF.
+
+      DATA(ls_mapping) = _get_bms_parameter_mapping( iv_werks     = is_data_to_maintain-plant
+                                                     iv_mstr_char = <ls_values>-mstr_char ).
+      IF ls_mapping-parname IS INITIAL.
+        CONTINUE.
+      ENDIF.
+
+      ASSIGN lt_gradmtrx_items[ ddic_fname = ls_mapping-parname
+                                klass_kz   = abap_true ] TO FIELD-SYMBOL(<ls_gradmtrx_item>).
+      IF sy-subrc <> 0.
+        CONTINUE.
+      ENDIF.
+
+      IF <ls_gradmtrx_item>-gw_m3_m2 IS INITIAL AND
+         <ls_gradmtrx_item>-gw_m2_m1 IS INITIAL AND
+         <ls_gradmtrx_item>-gw_m1_0  IS INITIAL AND
+         <ls_gradmtrx_item>-gw_0_p1  IS INITIAL AND
+         <ls_gradmtrx_item>-gw_p1_p2 IS INITIAL AND
+         <ls_gradmtrx_item>-gw_p2_p3 IS INITIAL.
+        CONTINUE.
+      ENDIF.
+
+      IF lv_value < <ls_gradmtrx_item>-gw_m3_m2.
+        APPEND VALUE #( id         = co_msg_id
+                        type       = 'W'
+                        number     = 030
+                        message_v1 = <ls_gradmtrx_item>-bezeichn
+                        message_v2 = |{ lv_value NUMBER = USER }|
+                        message_v3 = |{ <ls_gradmtrx_item>-gw_m3_m2 NUMBER = USER }|
+                        message_v4 = is_data_to_maintain-insplot ) TO rt_messages.
+      ENDIF.
+
+      IF lv_value >= <ls_gradmtrx_item>-gw_p2_p3.
+        APPEND VALUE #( id         = co_msg_id
+                        type       = 'W'
+                        number     = 031
+                        message_v1 = <ls_gradmtrx_item>-bezeichn
+                        message_v2 = |{ lv_value NUMBER = USER }|
+                        message_v3 = |{ <ls_gradmtrx_item>-gw_p2_p3 NUMBER = USER }|
+                        message_v4 = is_data_to_maintain-insplot ) TO rt_messages.
+      ENDIF.
+    ENDLOOP.
+
+  ENDMETHOD.
+
+
   METHOD _check_value_bms_ddic.
 
     DATA:
@@ -1148,26 +1272,21 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
       <lv_max>    TYPE any.
 
     " Step 1: Read mapping entry
-    SELECT pargrp, parname
-      FROM zbms_if_mappqm
-      WHERE werks = @iv_werks
-        AND mkmnr = @iv_mstr_char
-      ORDER BY version DESCENDING
-      INTO TABLE @DATA(lt_mappqm)
-       UP TO 1 ROWS.
+    DATA(ls_mapping) = _get_bms_parameter_mapping( iv_werks     = iv_werks
+                                                   iv_mstr_char = iv_mstr_char ).
 
-    IF sy-subrc <> 0.
+    IF ls_mapping IS INITIAL.
       RETURN.
     ENDIF.
 
     " Step 2: Derive target table and field
-    DATA(lv_tabname) = SWITCH #( lt_mappqm[ 1 ]-pargrp
+    DATA(lv_tabname) = SWITCH #( ls_mapping-pargrp
       WHEN 'LAB' THEN 'ZBMS_LABOR_W'
       WHEN 'KAR' THEN 'ZBMS_KARDE_W' ).
 
-    DATA(lv_fieldname) = lt_mappqm[ 1 ]-parname.
+    DATA(lv_fieldname) = ls_mapping-parname.
 
-    IF lv_fieldname IS INITIAL OR
+    IF lv_tabname IS INITIAL OR
        lv_fieldname IS INITIAL.
 
       RETURN.
@@ -1496,10 +1615,6 @@ ENDMETHOD.
 
 
 METHOD _get_additional_header_data.
-  DATA wa_qals TYPE qals.
-
-  FIELD-SYMBOLS: <wa_qals> TYPE qals,
-                 <wa_qapp> TYPE qapp.
 
 * Get maintain type
   cs_data_to_maintain-slwid = zcl_qm_lab_bms_util=>get_maintenance_type( iv_insplot  = cs_data_to_maintain-insplot
@@ -1510,27 +1625,16 @@ METHOD _get_additional_header_data.
     cs_data_to_maintain-phynr = zcl_qm_lab_bms_util=>get_physical_sample( iv_insplot = cs_data_to_maintain-insplot ).
   ENDIF.
 
-  READ TABLE me->at_qals_buffer
-  ASSIGNING <wa_qals>
-  WITH KEY prueflos = cs_data_to_maintain-insplot.
+  DATA(ls_qals) = _get_qals( cs_data_to_maintain-insplot ).
 
-  IF sy-subrc IS NOT INITIAL.
-    SELECT SINGLE *
-    FROM qals
-    INTO wa_qals
-    WHERE prueflos = cs_data_to_maintain-insplot.
-
-    IF sy-subrc IS NOT INITIAL.
-      RETURN.
-    ENDIF.
-
-    APPEND wa_qals TO me->at_qals_buffer ASSIGNING <wa_qals>.
+  IF ls_qals IS INITIAL.
+    RETURN.
   ENDIF.
 
   SELECT SINGLE aplzl
   INTO cs_data_to_maintain-aplzl
   FROM afvc
-  WHERE aufpl = <wa_qals>-aufpl
+  WHERE aufpl = ls_qals-aufpl
     AND vornr = cs_data_to_maintain-inspoper.
 ENDMETHOD.
 
@@ -1569,6 +1673,25 @@ ENDMETHOD.
 
     FREE lt_qasr.
   ENDMETHOD.                    "_get_existing_sample_values
+
+
+  METHOD _get_bms_parameter_mapping.
+
+    DATA lt_mappqm TYPE STANDARD TABLE OF ts_bms_mapping.
+
+    SELECT pargrp, parname
+      FROM zbms_if_mappqm
+      WHERE werks = @iv_werks
+        AND mkmnr = @iv_mstr_char
+      ORDER BY version DESCENDING
+      INTO TABLE @lt_mappqm
+      UP TO 1 ROWS.
+
+    IF sy-subrc = 0.
+      rs_mapping = lt_mappqm[ 1 ].
+    ENDIF.
+
+  ENDMETHOD.
 
 
   METHOD _get_char_requirements.
@@ -1740,6 +1863,110 @@ ENDMETHOD.
     CLEAR lv_where_clause.
     FREE: lt_inspection_points, lt_sample_results, lt_operations_mapping.
   ENDMETHOD.                    "_get_existing_sample_values
+
+
+  METHOD _get_grading_matrix_items.
+
+    DATA lt_return TYPE bapiret2_t.
+
+    CONSTANTS co_accessmode_ptype TYPE zbms_bapi_klassmtrx_zugriffart VALUE 'PTY'.
+
+    READ TABLE at_gradmtrx_buffer ASSIGNING FIELD-SYMBOL(<ls_buffer>)
+         WITH TABLE KEY insplot = is_data_to_maintain-insplot.
+
+    IF sy-subrc = 0.
+      rt_items = <ls_buffer>-items.
+      RETURN.
+    ENDIF.
+
+    DATA(ls_qals) = _get_qals( is_data_to_maintain-insplot ).
+
+    IF ls_qals IS NOT INITIAL.
+      SELECT SINGLE umreif
+        FROM zbms_prodauf
+        WHERE werks = @ls_qals-werk
+          AND aufnr = @ls_qals-aufnr
+        INTO @DATA(lv_umreif).
+
+      DATA(lv_umreif_char) = _get_umreif_char( lv_umreif ).
+
+      CALL FUNCTION 'Z_BMS_BAPI_GRADMTRX_GETDETAIL'
+        EXPORTING
+          i_accessmode    = co_accessmode_ptype
+          i_valid_on_dat  = ls_qals-paendterm
+          i_werks         = ls_qals-werk
+          i_bmsmatnr      = ls_qals-zzbms_materialnr
+          i_farbe         = ls_qals-zzbms_farbe
+          i_umreif        = lv_umreif_char
+          i_avivage       = ls_qals-zzbms_avivage
+          i_len_ptype_s18 = ls_qals-zzbms_len_ptype_stelle18
+          i_len_ptype_s19 = ls_qals-zzbms_len_ptype_stelle19
+          i_len_ptype_s20 = ls_qals-zzbms_len_ptype_stelle20
+          i_prodvariant   = ls_qals-zzbms_material_variante_prod
+        TABLES
+          et_return       = lt_return
+          et_gradmtrx_itm = rt_items
+        EXCEPTIONS
+          error_message   = 1
+          OTHERS          = 2.
+
+      IF sy-subrc <> 0.
+        APPEND VALUE #( type       = 'E'
+                        id         = sy-msgid
+                        number     = sy-msgno
+                        message_v1 = sy-msgv1
+                        message_v2 = sy-msgv2
+                        message_v3 = sy-msgv3
+                        message_v4 = sy-msgv4 ) TO lt_return.
+      ENDIF.
+
+      IF line_exists( lt_return[ type = 'E' ] ).
+        CLEAR rt_items.
+
+        _write_application_log( iv_insplot  = is_data_to_maintain-insplot
+                                iv_inspoper = is_data_to_maintain-inspoper
+                                it_messages = lt_return ).
+      ENDIF.
+    ENDIF.
+
+    INSERT VALUE #( insplot = is_data_to_maintain-insplot
+                    items   = rt_items ) INTO TABLE at_gradmtrx_buffer.
+
+  ENDMETHOD.
+
+
+  METHOD _get_qals.
+
+    READ TABLE at_qals_buffer INTO rs_qals WITH KEY prueflos = iv_insplot.
+
+    IF sy-subrc = 0.
+      RETURN.
+    ENDIF.
+
+    SELECT SINGLE *
+      FROM qals
+      INTO rs_qals
+      WHERE prueflos = iv_insplot.
+
+    IF sy-subrc = 0.
+      APPEND rs_qals TO at_qals_buffer.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD _get_umreif_char.
+
+    DATA(lv_umreif) = iv_umreif.
+
+    " UMREIF is stored as '4 ', ' 4' or '04'; the grading matrix key is the single significant character
+    SHIFT lv_umreif LEFT DELETING LEADING space.
+    SHIFT lv_umreif LEFT DELETING LEADING '0'.
+    SHIFT lv_umreif RIGHT DELETING TRAILING space.
+
+    rv_umreif = lv_umreif+1(1).
+
+  ENDMETHOD.
 
 
   METHOD _lock.

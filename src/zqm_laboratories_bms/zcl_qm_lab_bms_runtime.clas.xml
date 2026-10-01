@@ -39,6 +39,11 @@
      <DESCRIPT>Data structure for maintenance</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>AT_GRADMTRX_BUFFER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Grading matrix items per inspection lot</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>AT_QALS_BUFFER</CMPNAME>
      <LANGU>2</LANGU>
      <DESCRIPT>Inspection lot record</DESCRIPT>
@@ -72,6 +77,11 @@
      <CMPNAME>_CHECK_DATA_TO_MAINTAIN</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Check data to maintain</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_CHECK_GRADING_LIMITS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Check saved values against grading matrix</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>_CHECK_VALUE_BMS_DDIC</CMPNAME>
@@ -134,6 +144,11 @@
      <DESCRIPT>Fill additional sample value data</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>_GET_BMS_PARAMETER_MAPPING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get BMS parameter mapping of master characteristic</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>_GET_CHAR_REQUIREMENTS</CMPNAME>
      <LANGU>2</LANGU>
      <DESCRIPT>Get char requirements</DESCRIPT>
@@ -162,6 +177,21 @@
      <CMPNAME>_GET_EXISTING_SAMPLE_VALUES</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Fill value with existing sample values</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_GET_GRADING_MATRIX_ITEMS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get grading matrix items of inspection lot</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_GET_QALS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get inspection lot record</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_GET_UMREIF_CHAR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get single character strapping key</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>_LOCK</CMPNAME>
@@ -282,6 +312,18 @@
      <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_CHECK_GRADING_LIMITS</CMPNAME>
+     <SCONAME>IS_DATA_TO_MAINTAIN</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Data structure for maintenance</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_CHECK_GRADING_LIMITS</CMPNAME>
+     <SCONAME>IT_SAMPLE_RESULTS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Saved sample results</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>_CHECK_VALUE_BMS_DDIC</CMPNAME>
@@ -462,6 +504,18 @@
      <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_GET_BMS_PARAMETER_MAPPING</CMPNAME>
+     <SCONAME>IV_MSTR_CHAR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Master characteristic</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_GET_BMS_PARAMETER_MAPPING</CMPNAME>
+     <SCONAME>RS_MAPPING</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>BMS parameter mapping</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>_GET_CHAR_REQUIREMENTS</CMPNAME>

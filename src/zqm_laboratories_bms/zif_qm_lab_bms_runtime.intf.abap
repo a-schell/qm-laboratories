@@ -20,7 +20,6 @@ interface ZIF_QM_LAB_BMS_RUNTIME
   methods DISPOSE
     raising
       ZCX_QM_LAB_BMS_EXCEPTIONS .
-  type-pools ABAP .
   methods GET_DATA_FOR_MAINTAIN
     importing
       !IT_HEAD_DATA type ZQM_T_LAB_BMS_HEAD_DATA
@@ -48,6 +47,7 @@ interface ZIF_QM_LAB_BMS_RUNTIME
   methods SAVE_DATA
     exporting
       value(ET_MESSAGES) type BAPIRET2_T
+      value(ET_GRADING_MESSAGES) type BAPIRET2_T
     changing
       !CT_DATA_TO_MAINTAIN type ZQM_T_LAB_BMS_MAINTAIN_DATA
     raising
