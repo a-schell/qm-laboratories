@@ -6,7 +6,10 @@ CONSTANTS: co_status_bedap             TYPE zqm_dataset_status VALUE 3,
            co_status_success           TYPE zqm_dataset_status VALUE 2,
            co_status_no_insplot        TYPE zqm_dataset_status VALUE 4,
            co_status_no_operation_char TYPE zqm_dataset_status VALUE 5,
-           co_status_error             TYPE zqm_dataset_status VALUE 6.
+           co_status_error             TYPE zqm_dataset_status VALUE 6,
+           co_no_prueflos              TYPE qplos VALUE IS INITIAL,
+           co_lock_retries             TYPE i VALUE 20,
+           co_lock_wait_seconds        TYPE i VALUE 30.
 
 TYPES: ty_bapi2045l2 TYPE STANDARD TABLE OF bapi2045l2.
 
@@ -31,7 +34,8 @@ TYPES: END OF ty_qals.
 DATA: wa_plant_settings TYPE zqm_s_lab_device_plant_setting,
       obj_transfer TYPE REF TO zcl_qm_lab_device_transfer,
       lt_files TYPE zqm_lab_t_file_list,
-      lv_filename TYPE zqm_filename.
+      lv_filename TYPE zqm_filename,
+      lv_plant_locked TYPE abap_bool.
 
 DATA: lt_device_settings_buffer  TYPE SORTED TABLE OF zqm_s_lab_device_settings WITH UNIQUE KEY device_id,
       lt_bedap_mapping_buffer    TYPE zqm_t_lab_device_bedap_mapping,

@@ -58,7 +58,9 @@ public section.
       value(RV_DATASET_GUID) type SYSUUID_C32
     raising
       ZCX_QM_LAB_DEVICE_EXCEPTIONS .
-  methods ARCHIVE_DATA .
+  methods ARCHIVE_DATA
+    importing
+      !IV_WERKS type WERKS_D .
   class-methods GET_STORED_DATA_BY_STATUS
     importing
       !IV_WERKS type WERKS_D
@@ -101,8 +103,12 @@ CLASS ZCL_QM_LAB_DEVICE_TRANSFER IMPLEMENTATION.
     DATA: lt_zqm_dev_transfer TYPE TABLE OF zqm_dev_transfer,
           ls_zqm_dev_transfer TYPE zqm_dev_transfer.
 
+    CONSTANTS: co_status_success TYPE zqm_dataset_status VALUE 2,
+               co_status_bedap   TYPE zqm_dataset_status VALUE 3.
+
     SELECT * FROM zqm_dev_transfer INTO TABLE lt_zqm_dev_transfer
-      WHERE status = 2 OR status = 3.
+      WHERE werks = iv_werks
+        AND ( status = co_status_success OR status = co_status_bedap ).
 
     LOOP AT lt_zqm_dev_transfer INTO ls_zqm_dev_transfer.
       INSERT INTO zqm_dev_tran_arc VALUES ls_zqm_dev_transfer.

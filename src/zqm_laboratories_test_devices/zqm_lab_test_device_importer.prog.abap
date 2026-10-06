@@ -17,6 +17,13 @@ START-OF-SELECTION.
     WRITE: / |Started new session with GUID { obj_transfer->get_session_guid( ) } in plant { p_plant }|.
   ENDIF.
 
+  IF p_test = abap_false.
+    PERFORM lock_plant CHANGING lv_plant_locked.
+    IF lv_plant_locked = abap_false.
+      RETURN.
+    ENDIF.
+  ENDIF.
+
   IF p_opt1 = abap_true.
     PERFORM load_plant_settings.
     PERFORM load_files.
@@ -27,6 +34,7 @@ START-OF-SELECTION.
     PERFORM create_inspection_operations.
     PERFORM archive_files.
     PERFORM archive_data.
+    PERFORM unlock_plant.
   ENDIF.
 
 END-OF-SELECTION.
@@ -275,14 +283,7 @@ FORM create_inspection_operations.
 
       <wa_transfer_data>-status = co_status_success.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_commit       = abap_true ).
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
+      PERFORM set_dataset_status USING <wa_transfer_data> co_no_prueflos.
 
       UNASSIGN <wa_transfer_data>.
       CLEAR wa_removed_converted_data.
@@ -550,6 +551,7 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
   DATA lv_error TYPE abap_bool.
   DATA lv_no_operation TYPE abap_bool.
   DATA lv_temp_insppoint TYPE qibpppktnr VALUE 999000.
+  DATA lv_insppoint TYPE qibpppktnr.
 
   FIELD-SYMBOLS: <wa_converted_data>          TYPE ty_s_converted_data,
                  <wa_transfer_data>           TYPE zqm_s_lab_device_read_data,
@@ -618,14 +620,7 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 
       <wa_transfer_data>-status = co_status_no_insplot.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_commit       = abap_true ).
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
+      PERFORM set_dataset_status USING <wa_transfer_data> co_no_prueflos.
 
       CONTINUE.
     ENDIF.
@@ -646,14 +641,7 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 
       <wa_transfer_data>-status = co_status_bedap.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_commit       = abap_true ).
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
+      PERFORM set_dataset_status USING <wa_transfer_data> co_no_prueflos.
 
       CONTINUE.
     ENDIF.
@@ -671,14 +659,7 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 * No operation found.
       <wa_transfer_data>-status = co_status_no_operation_char.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_commit       = abap_true ).
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
+      PERFORM set_dataset_status USING <wa_transfer_data> co_no_prueflos.
 
       CONTINUE.
     ENDIF.
@@ -861,14 +842,7 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
 * No operation found.
       <wa_transfer_data>-status = co_status_no_operation_char.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_commit       = abap_true ).
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
+      PERFORM set_dataset_status USING <wa_transfer_data> co_no_prueflos.
     ENDIF.
 
     CLEAR lv_insplot.
@@ -888,6 +862,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
     IF lt_sample_results_save[] IS INITIAL.
       CONTINUE.
     ENDIF.
+
+* Store the insppoint for the status update at the end
+    lv_insppoint = <wa_inspection_points>-insppoint.
 
     IF <wa_inspection_points>-insppoint >= 999000.
 * Remove temporary samplepoint
@@ -922,9 +899,9 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
     IF p_debug = abap_true.
       WRITE: /.
     ENDIF.
-    LOOP AT ct_converted_data ASSIGNING <wa_converted_data> WHERE insplot = <wa_inspection_points>-insplot
-                                                              AND inspoper = <wa_inspection_points>-inspoper
-                                                              AND insppoint = <wa_inspection_points>-insppoint.
+    LOOP AT ct_converted_data ASSIGNING <wa_converted_data> WHERE insplot   = <wa_inspection_points>-insplot
+                                                              AND inspoper  = <wa_inspection_points>-inspoper
+                                                              AND insppoint = lv_insppoint.
       READ TABLE ct_transfer_data
       ASSIGNING <wa_transfer_data>
       WITH KEY session_guid = <wa_converted_data>-session_guid
@@ -936,12 +913,8 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
         <wa_transfer_data>-status = co_status_success.
       ENDIF.
 
-      obj_transfer->set_status( iv_werks        = p_plant
-                                iv_session_guid = <wa_transfer_data>-session_guid
-                                iv_dataset_guid = <wa_transfer_data>-dataset_guid
-                                iv_status       = <wa_transfer_data>-status
-                                iv_prueflos     = <wa_inspection_points>-insplot
-                                iv_commit       = abap_true ).
+      PERFORM set_dataset_status USING <wa_transfer_data> <wa_inspection_points>-insplot.
+
       IF p_debug = abap_true.
         WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
       ENDIF.
@@ -1138,7 +1111,7 @@ FORM archive_data .
 
 * Create new transfer object
   CREATE OBJECT obj_transfer.
-  obj_transfer->archive_data( ).
+  obj_transfer->archive_data( iv_werks = p_plant ).
 
 ENDFORM.
 
@@ -1154,5 +1127,91 @@ FORM write_bapiret USING iv_bapi_name TYPE string
     } { is_bapi_ret-message_v3
     } { is_bapi_ret-message_v4 }|.
   ENDIF.
+
+ENDFORM.
+
+
+FORM set_dataset_status USING is_transfer_data TYPE zqm_s_lab_device_read_data
+                              iv_prueflos      TYPE qplos.
+
+  DATA:
+    obj_exception TYPE REF TO zcx_qm_lab_device_exceptions,
+    lv_message TYPE string.
+
+  TRY.
+      IF iv_prueflos IS INITIAL.
+        obj_transfer->set_status( iv_werks        = p_plant
+                                  iv_session_guid = is_transfer_data-session_guid
+                                  iv_dataset_guid = is_transfer_data-dataset_guid
+                                  iv_status       = is_transfer_data-status
+                                  iv_commit       = abap_true ).
+      ELSE.
+        obj_transfer->set_status( iv_werks        = p_plant
+                                  iv_session_guid = is_transfer_data-session_guid
+                                  iv_dataset_guid = is_transfer_data-dataset_guid
+                                  iv_status       = is_transfer_data-status
+                                  iv_prueflos     = iv_prueflos
+                                  iv_commit       = abap_true ).
+      ENDIF.
+
+      IF p_debug = abap_true.
+        WRITE: /4 |Set status: { is_transfer_data-status }|.
+      ENDIF.
+    CATCH zcx_qm_lab_device_exceptions INTO obj_exception.
+      lv_message = |Status { is_transfer_data-status } not set for dataset { is_transfer_data-dataset_guid }| &&
+                   | (session { is_transfer_data-session_guid }): { obj_exception->get_text( ) }|.
+
+      MESSAGE lv_message TYPE 'S'.
+      IF p_debug = abap_true.
+        WRITE: /4 lv_message.
+      ENDIF.
+  ENDTRY.
+
+ENDFORM.
+
+FORM lock_plant CHANGING cv_locked TYPE abap_bool.
+
+  DATA lv_lock_user TYPE sy-msgv1.
+
+  cv_locked = abap_false.
+
+  DO co_lock_retries TIMES.
+    CALL FUNCTION 'ENQUEUE_EZQM_DEV_IMPORT'
+      EXPORTING
+        mode_zqm_dev_transfer = 'E'
+        mandt                 = sy-mandt
+        werks                 = p_plant
+        _scope                = '1'
+      EXCEPTIONS
+        foreign_lock          = 1
+        system_failure        = 2
+        OTHERS                = 3.
+
+    CASE sy-subrc.
+      WHEN 0.
+        cv_locked = abap_true.
+        RETURN.
+      WHEN 1.
+        lv_lock_user = sy-msgv1.
+        IF sy-index < co_lock_retries.
+          WAIT UP TO co_lock_wait_seconds SECONDS.
+        ENDIF.
+      WHEN OTHERS.
+        MESSAGE e011(zqm_lab_test_devices) WITH p_plant.
+    ENDCASE.
+  ENDDO.
+
+  MESSAGE s010(zqm_lab_test_devices) WITH p_plant lv_lock_user.
+
+ENDFORM.
+
+FORM unlock_plant.
+
+  CALL FUNCTION 'DEQUEUE_EZQM_DEV_IMPORT'
+    EXPORTING
+      mode_zqm_dev_transfer = 'E'
+      mandt                 = sy-mandt
+      werks                 = p_plant
+      _scope                = '1'.
 
 ENDFORM.
