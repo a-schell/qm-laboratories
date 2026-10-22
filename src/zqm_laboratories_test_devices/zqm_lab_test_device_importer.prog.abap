@@ -914,10 +914,6 @@ FORM set_insplot_value CHANGING ct_converted_data TYPE ty_t_converted_data
       ENDIF.
 
       PERFORM set_dataset_status USING <wa_transfer_data> <wa_inspection_points>-insplot.
-
-      IF p_debug = abap_true.
-        WRITE: /4 |Set status: { <wa_transfer_data>-status }|.
-      ENDIF.
     ENDLOOP.
 
     CALL FUNCTION 'BAPI_TRANSACTION_COMMIT'.

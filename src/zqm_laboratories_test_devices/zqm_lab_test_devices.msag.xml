@@ -67,6 +67,18 @@
      <MSGNR>009</MSGNR>
      <TEXT>No settings found for plant &amp;1</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Import for plant &amp;1 is already running (user &amp;2), run skipped</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LAB_TEST_DEVICES</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Lock for plant &amp;1 could not be set</TEXT>
+    </T100>
    </T100>
    <I18N_LANGS>
     <LANGU>2</LANGU>
