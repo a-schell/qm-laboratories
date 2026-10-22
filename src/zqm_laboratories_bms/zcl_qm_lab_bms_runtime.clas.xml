@@ -81,7 +81,7 @@
     <SEOCOMPOTX>
      <CMPNAME>_CHECK_GRADING_LIMITS</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Check saved values against grading matrix</DESCRIPT>
+     <DESCRIPT>Check saved values against grading matrix, log violations</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>_CHECK_VALUE_BMS_DDIC</CMPNAME>
@@ -192,6 +192,11 @@
      <CMPNAME>_GET_UMREIF_CHAR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Get single character strapping key</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>_GET_WORK_CENTER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get work center of inspection operation</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>_LOCK</CMPNAME>
@@ -660,6 +665,24 @@
      <SCONAME>ZCX_QM_LAB_BMS_EXCEPTIONS</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>BMS runtime exceptions</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_GET_WORK_CENTER</CMPNAME>
+     <SCONAME>IV_INSPLOT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Inspection Lot Number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_GET_WORK_CENTER</CMPNAME>
+     <SCONAME>IV_INSPOPER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Operation Number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>_GET_WORK_CENTER</CMPNAME>
+     <SCONAME>RV_WORK_CENTER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Work center</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>_LOCK</CMPNAME>

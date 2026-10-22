@@ -199,6 +199,12 @@
      <MSGNR>031</MSGNR>
      <TEXT>Retest required: &amp;1 value &amp;2 exceeds grading upper limit &amp;3 (lot &amp;4)</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_LABORATORIES_BMS</ARBGB>
+     <MSGNR>032</MSGNR>
+     <TEXT>Grading limits of &amp;1: &amp;2 to &amp;3 (work center &amp;4)</TEXT>
+    </T100>
    </T100>
    <I18N_LANGS>
     <LANGU>2</LANGU>
@@ -454,6 +460,11 @@
      <SPRSL>D</SPRSL>
      <MSGNR>031</MSGNR>
      <TEXT>Retest nötig: &amp;1 Wert &amp;2 überschreitet Grading-Obergrenze &amp;3 (lot &amp;4)</TEXT>
+    </item>
+    <item>
+     <SPRSL>D</SPRSL>
+     <MSGNR>032</MSGNR>
+     <TEXT>Grading-Grenzen zu &amp;1: &amp;2 bis &amp;3 (Arbeitsplatz &amp;4)</TEXT>
     </item>
    </T100_TEXTS>
   </asx:values>

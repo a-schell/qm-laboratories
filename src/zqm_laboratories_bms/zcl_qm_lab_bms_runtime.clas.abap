@@ -201,6 +201,12 @@ private section.
       !IV_MSTR_CHAR type QMSTR_CHAR
     returning
       value(RS_MAPPING) type TS_BMS_MAPPING .
+  methods _GET_WORK_CENTER
+    importing
+      !IV_INSPLOT type QIBPLOSNR
+      !IV_INSPOPER type QIBPVORNR
+    returning
+      value(RV_WORK_CENTER) type BAPI2045L2-WORKCENTER .
 ENDCLASS.
 
 
@@ -749,12 +755,12 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
         DELETE TABLE ct_data_to_maintain FROM <wa_data_to_maintain>.
         INSERT wa_data_to_maintain INTO TABLE ct_data_to_maintain.
 
-* Save additional values
-        APPEND LINES OF me->_save_additional_values_data( is_data_to_maintain = wa_data_to_maintain ) TO et_messages.
-
 * Check grading matrix limits
         APPEND LINES OF me->_check_grading_limits( is_data_to_maintain = wa_data_to_maintain
                                                    it_sample_results   = lt_sample_results_work ) TO et_grading_messages.
+
+* Save additional values
+        APPEND LINES OF me->_save_additional_values_data( is_data_to_maintain = wa_data_to_maintain ) TO et_messages.
       ENDIF.
 
       IF wa_return IS NOT INITIAL.
@@ -1191,7 +1197,10 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
 
   METHOD _check_grading_limits.
 
-    DATA lv_value TYPE zbms_s_bapi_gradmtrx_itm-sollwert.
+    DATA:
+      lv_value        TYPE zbms_s_bapi_gradmtrx_itm-sollwert,
+      ls_message      TYPE bapiret2,
+      lt_log_messages TYPE bapiret2_t.
 
     CONSTANTS co_msg_id TYPE symsgid VALUE 'ZQM_LABORATORIES_BMS'.
 
@@ -1200,6 +1209,9 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
     IF lt_gradmtrx_items IS INITIAL.
       RETURN.
     ENDIF.
+
+    DATA(lv_work_center) = _get_work_center( iv_insplot  = is_data_to_maintain-insplot
+                                             iv_inspoper = is_data_to_maintain-inspoper ).
 
     LOOP AT is_data_to_maintain-values ASSIGNING FIELD-SYMBOL(<ls_values>).
       ASSIGN it_sample_results[ inspchar = <ls_values>-inspchar ] TO FIELD-SYMBOL(<ls_sample_result>).
@@ -1219,6 +1231,7 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
 
       DATA(ls_mapping) = _get_bms_parameter_mapping( iv_werks     = is_data_to_maintain-plant
                                                      iv_mstr_char = <ls_values>-mstr_char ).
+
       IF ls_mapping-parname IS INITIAL.
         CONTINUE.
       ENDIF.
@@ -1238,26 +1251,39 @@ CLASS ZCL_QM_LAB_BMS_RUNTIME IMPLEMENTATION.
         CONTINUE.
       ENDIF.
 
-      IF lv_value < <ls_gradmtrx_item>-gw_m3_m2.
-        APPEND VALUE #( id         = co_msg_id
-                        type       = 'W'
-                        number     = 030
-                        message_v1 = <ls_gradmtrx_item>-bezeichn
-                        message_v2 = |{ lv_value NUMBER = USER }|
-                        message_v3 = |{ <ls_gradmtrx_item>-gw_m3_m2 NUMBER = USER }|
-                        message_v4 = is_data_to_maintain-insplot ) TO rt_messages.
-      ENDIF.
+      ls_message = VALUE #( id         = co_msg_id
+                            type       = 'W'
+                            message_v1 = <ls_gradmtrx_item>-bezeichn
+                            message_v2 = |{ lv_value NUMBER = USER }|
+                            message_v4 = is_data_to_maintain-insplot ).
 
       IF lv_value >= <ls_gradmtrx_item>-gw_p2_p3.
-        APPEND VALUE #( id         = co_msg_id
-                        type       = 'W'
-                        number     = 031
-                        message_v1 = <ls_gradmtrx_item>-bezeichn
-                        message_v2 = |{ lv_value NUMBER = USER }|
-                        message_v3 = |{ <ls_gradmtrx_item>-gw_p2_p3 NUMBER = USER }|
-                        message_v4 = is_data_to_maintain-insplot ) TO rt_messages.
+        ls_message-number = 031.
+        ls_message-message_v3 = |{ <ls_gradmtrx_item>-gw_p2_p3 NUMBER = USER }|.
+      ELSEIF lv_value < <ls_gradmtrx_item>-gw_m3_m2.
+        ls_message-number = 030.
+        ls_message-message_v3 = |{ <ls_gradmtrx_item>-gw_m3_m2 NUMBER = USER }|.
+      ELSE.
+        CONTINUE.
       ENDIF.
+
+      APPEND ls_message TO rt_messages.
+      APPEND ls_message TO lt_log_messages.
+
+      APPEND VALUE #( id         = co_msg_id
+                      type       = 'W'
+                      number     = 032
+                      message_v1 = <ls_gradmtrx_item>-bezeichn
+                      message_v2 = |{ <ls_gradmtrx_item>-gw_m3_m2 NUMBER = USER }|
+                      message_v3 = |{ <ls_gradmtrx_item>-gw_p2_p3 NUMBER = USER }|
+                      message_v4 = lv_work_center ) TO lt_log_messages.
     ENDLOOP.
+
+    IF lt_log_messages IS NOT INITIAL.
+      _write_application_log( iv_insplot  = is_data_to_maintain-insplot
+                              iv_inspoper = is_data_to_maintain-inspoper
+                              it_messages = lt_log_messages ).
+    ENDIF.
 
   ENDMETHOD.
 
@@ -1965,6 +1991,22 @@ ENDMETHOD.
     SHIFT lv_umreif RIGHT DELETING TRAILING space.
 
     rv_umreif = lv_umreif+1(1).
+
+  ENDMETHOD.
+
+
+  METHOD _get_work_center.
+
+    DATA ls_operation TYPE bapi2045l2.
+
+    CALL FUNCTION 'BAPI_INSPOPER_GETDETAIL'
+      EXPORTING
+        insplot   = iv_insplot
+        inspoper  = iv_inspoper
+      IMPORTING
+        operation = ls_operation.
+
+    rv_work_center = ls_operation-workcenter.
 
   ENDMETHOD.
 
